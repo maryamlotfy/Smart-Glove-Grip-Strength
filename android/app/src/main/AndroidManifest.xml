@@ -1,0 +1,56 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- صلاحيات أساسية للبلوتوث (قديمة لكن مهمة للتوافق) -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <!-- صلاحيات البلوتوث لأندرويد 12 وما فوق (API level 31+) -->
+    <!-- BLUETOOTH_SCAN: للسماح للتطبيق بالبحث عن أجهزة البلوتوث القريبة. -->
+    <!-- "neverForLocation": مهمة عشان توضح إنك مش بتستخدمي الموقع الحقيقي، بس هي لازمة للـ scan. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
+
+    <!-- BLUETOOTH_CONNECT: للسماح للتطبيق بالاتصال بأجهزة البلوتوث. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!-- BLUETOOTH_ADVERTISE: لو التطبيق هيعمل إعلان عن نفسه كجهاز بلوتوث، وهو نادر في حالتك لكن ممكن يكون مفيد. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
+    <!-- صلاحيات الموقع: مطلوبة لعملية البحث عن أجهزة البلوتوث على بعض إصدارات الأندرويد. -->
+    <!-- ACCESS_FINE_LOCATION: صلاحية الوصول للموقع الدقيق. Max SDK 30 لو هتدعمي إصدارات أقدم. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:maxSdkVersion="30" />
+    <!-- ACCESS_COARSE_LOCATION: صلاحية الوصول للموقع التقريبي، ودي غالبًا بتكون كافية. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:maxSdkVersion="30" />
+
+    <application
+        android:label="myapp"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"
+                />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+</manifest>
